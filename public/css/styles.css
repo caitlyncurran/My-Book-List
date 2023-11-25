@@ -1,0 +1,129 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header {
+    margin-left: 30px;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: 'Cinzel', serif;
+}
+
+p {
+    font-size: 22px;
+    text-align: justify;
+}
+
+small {
+    color: rgb(109, 109, 109);
+    font-family: 'Cinzel', serif;
+}
+
+h2 {
+    font-size: 30px;
+    font-family: 'Cinzel', serif;
+}
+
+.book-container {
+    height: 40%;
+    width: 52%;
+    margin: auto;
+    padding: 4rem;
+}
+
+.book-image {
+    max-height: 50%;
+    float: left;
+    margin-right: 40px;
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.by {
+    font-size: 24px;
+    font-family: 'Cinzel', serif;
+}
+
+.sort {
+    top: 20px;
+    margin-left: 30px;
+}
+
+.add {
+    align-self: baseline;
+    position: sticky;
+    bottom: 20px;
+    margin-left: 84%;
+}
+
+#tab, input[type=submit] {
+    border: none;
+    background-color: white;
+    font-family: serif;
+    font-size: 22px;
+    padding: 0;
+}
+
+#tab:hover, input[type=submit]:hover {
+    cursor: pointer;
+    color: green;
+}
+
+label, input {
+    font-family: serif;
+    font-size: 22px;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    height: 50vh;
+    width: 52%;
+    margin: auto;
+    padding: 4rem;
+}
+
+.review {
+    grid-row-start: 3;
+    grid-row-end: 6;
+    font-size: 22px;
+    font-family: serif;
+}
+
+button, .textarea-edit {
+    font-size: 22px;
+    font-family: serif;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.edit {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-button {
+    border: none;
+    background-color: white;
+    color: rgb(109, 109, 109);
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+}
+
+.edit-button:hover {
+    color: green;
+}
+
+.passwordDelete {
+    margin-top: 10px;
+}

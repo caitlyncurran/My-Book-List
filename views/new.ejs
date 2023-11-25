@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Add book</title>
+  </head>
+  <body>
+    <h1 class="header">Add a new book review</h1>
+    <form class="form-container" action="/new" method="post">
+      <input type="text" name="title" placeholder="Title" />
+      <input type="text" name="author" placeholder="Author" />
+      <input type="text" name="isbn" placeholder="ISBN-13" />
+      <input
+        class="rating-edit"
+        type="number"
+        name="rating"
+        min="0"
+        max="10"
+        placeholder="Rating (out of 10)"
+      />
+      <textarea
+        class="review"
+        name="description"
+        id=""
+        cols="30"
+        rows="10"
+        placeholder="Write review here..."
+      ></textarea>
+      <input
+        class="password"
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>

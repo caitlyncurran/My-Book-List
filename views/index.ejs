@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Caitlyn's Book List</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Caitlyn's Reading List</h1>
+    </div>
+    <label class="sort" for="sort">Sort by:
+    <form class="sort" action="/title" method="post">
+      <input type="submit" name="title" value="title," />
+    </form>
+    <form class="sort" action="/rating" method="post">
+      <input type="submit" name="rating" value="rating," />
+    </form>
+    <form class="sort" action="/newest" method="post">
+      <input type="submit" name="newest" value="newest" />
+    </form>
+  </label>
+    <% for(let book of books){%>
+    <div class="book-container">
+      <img
+        class="book-image"
+        src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg"
+        alt="<%= book.title %> - by <%= book.author%>"
+      />
+      <div class="description">
+        <h2>
+          <%= book.title %> -
+          <span class="by">by</span>
+          <%= book.author %>
+        </h2>
+        <small id="rating<%=book.isbn%>"
+          >DATE READ: <%= book.date.toString().toUpperCase().slice(4, 15) %>.
+          HOW STRONGLY I RECOMMEND IT: <%= book.rating %>/10</small
+        >
+        <p id="description<%=book.isbn%>"><%= book.description %></p>
+      </div>
+      <p id="amazon<%=book.isbn%>">
+        Check out the
+        <a href="https://www.amazon.com/s?k=<%= book.isbn %>">Amazon page</a>
+        for details and reviews.
+      </p>
+      <!-- hidden edit block -->
+      <button class="edit-button" id="editbutton<%=book.isbn%>" onclick="handler('<%=book.isbn%>')">
+        Edit
+      </button>
+      <form class="edit" action="/edit" method="post">
+        <input type="hidden" name="isbn" value="<%= book.isbn %>">
+        <label id="inputLabel<%=book.isbn%>" for="inputRating<%=book.isbn%>" hidden>Edit Rating/Description:</label>
+        <input
+          class="rating-edit"
+          id="inputRating<%=book.isbn%>"
+          type="number"
+          name="updatedRating"
+          hidden="true"
+          value="<%= book.rating %>"
+        />
+      </label>
+        <textarea
+          id="input<%=book.isbn%>"
+          class="textarea-edit"
+          name="updatedDescription"
+          cols="30"
+          rows="8"
+          autocomplete="off"
+          autofocus="true"
+          hidden="true"
+        >
+        <%= book.description %> </textarea
+        >
+        <input
+        id="password<%=book.isbn%>"
+        class="password"
+        type="password"
+        name="password"
+        placeholder="Password"
+        hidden="true"
+        />
+        <button id="done<%=book.isbn%>" type="submit" hidden>Finish</button>
+      </form>
+      <!-- end of hidden form -->
+      <!-- hidden delete block -->
+      <button class="edit-button" id="deletebutton<%=book.isbn%>" onclick="handlerDelete('<%=book.isbn%>')">
+        Delete Entry
+      </button>
+      <form action="/delete" method="post">
+        <input
+        id="passwordDelete<%=book.isbn%>"
+        class="password passwordDelete"
+        type="password"
+        name="password"
+        placeholder="Enter password"
+        hidden="true"
+        />
+        <button class="passwordDelete" id="delete<%=book.isbn%>" type="submit" hidden>Delete</button>
+        <input type="hidden" name="deleteIsbn" value="<%= book.isbn %>">
+      </form>
+    </div>
+    <% } %>
+    <form class="add" action="/add" method="post">
+      <label for="tab"
+        >Add a new book <input type="submit" name="add" value="here." id="tab"
+      /></label>
+    </form>
+    <!-- handler -->
+    <script>
+      let isbn = book.isbn;
+      function handler(isbn) {
+        document
+          .getElementById("description" + isbn)
+          .setAttribute("hidden", true);
+        document.getElementById("rating" + isbn).setAttribute("hidden", true);
+        document.getElementById("amazon" + isbn).setAttribute("hidden", true);
+        document
+          .getElementById("editbutton" + isbn)
+          .setAttribute("hidden", true);
+        document.getElementById("done" + isbn).removeAttribute("hidden");
+        document.getElementById("inputLabel" + isbn).removeAttribute("hidden");
+        document.getElementById("inputRating" + isbn).removeAttribute("hidden");
+        document.getElementById("input" + isbn).removeAttribute("hidden");
+        document.getElementById("password" + isbn).removeAttribute("hidden");
+        // if it works!
+        document.getElementById("passwordDelete" + isbn).setAttribute("hidden", true);
+        document.getElementById("delete" + isbn).setAttribute("hidden", true);
+        document.getElementById("deletebutton" + isbn).removeAttribute("hidden");
+      }
+
+      function handlerDelete(isbn) {
+        document.getElementById("deletebutton" + isbn).setAttribute("hidden", true);
+        document.getElementById("passwordDelete" + isbn).removeAttribute("hidden");
+        document.getElementById("delete" + isbn).removeAttribute("hidden");
+        // let's see
+        document.getElementById("done" + isbn).setAttribute("hidden", true);
+        document.getElementById("inputLabel" + isbn).setAttribute("hidden", true);
+        document.getElementById("inputRating" + isbn).setAttribute("hidden", true);
+        document.getElementById("input" + isbn).setAttribute("hidden", true);
+        document.getElementById("password" + isbn).setAttribute("hidden", true);
+        //
+        document
+          .getElementById("description" + isbn)
+          .removeAttribute("hidden");
+        document.getElementById("rating" + isbn).removeAttribute("hidden");
+        document.getElementById("amazon" + isbn).removeAttribute("hidden");
+        document
+          .getElementById("editbutton" + isbn)
+          .removeAttribute("hidden");
+      }
+    </script>
+  </body>
+</html>
